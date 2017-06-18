@@ -51,43 +51,20 @@ def get_cameras_pw():
     return pw
 
 
-def check_for_logo():
-    try:
-        location = pyautogui.locateOnScreen(r'click_images\logo.png')
-        print('Logo found at {}'.format(location))
-    except:
-        print('Logo not found')
-
-
-def click_allow_button():
-    try:
-        location = pyautogui.locateOnScreen(r'click_images\username.png')  #
-        centre = pyautogui.center(location)
-        pyautogui.click(centre)
-    except:
-        print('Allow button not found')
-
 
 def type_username(un):
     pyautogui.typewrite(un)
 
 
-def click_username_field():
+def click_centre_of_named_image(img_name):
     try:
-        location = pyautogui.locateOnScreen(r'click_images\username.png')  #
+        location = pyautogui.locateOnScreen(r'click_images\{}.png'.format(img_name))  #
         centre = pyautogui.center(location)
         pyautogui.click(centre)
     except:
-        print('username button not found')
+        print('{} button not found'.format(img_name))
 
 
-def click_pw_field():
-    try:
-        location = pyautogui.locateOnScreen(r'click_images\password.png')  #
-        centre = pyautogui.center(location)
-        pyautogui.click(centre)
-    except:
-        print('pw button not found')
 
 
 def type_pw(pwd):
@@ -99,6 +76,7 @@ config_file = get_config_file()
 cameras_url = get_cameras_url()
 cameras_username = get_cameras_uname()
 cameras_pw = get_cameras_pw()
+photos_dir = r'H:\Photos\ipcam'
 
 
 # Open web browser (selenium)
@@ -106,17 +84,27 @@ ie_path = get_ie_path()
 driver = webdriver.Ie(ie_path)
 driver.get(cameras_url)  # load cameras page - take URL from config file
 time.sleep(1)
-# check_for_logo()  # use for testing
+# click_centre_of_named_image('logo')  # use for testing
 time.sleep(1)   # required to give pyautogui time to view the page
-click_allow_button()
+# click_centre_of_named_image('allow')
 time.sleep(1)
 # enter_u_p()
-# click_username_field()    # Not required as automatically selects this field
+# click_centre_of_named_image('username')    # Not required as automatically selects this field
+
 type_username(cameras_username)
-click_pw_field()
+click_centre_of_named_image('password')
 type_pw(cameras_pw)
-
-
+pyautogui.press('enter')
+time.sleep(1)
+click_centre_of_named_image('izzy')
+time.sleep(1)
+click_centre_of_named_image('maximise')
+time.sleep(1)
+click_centre_of_named_image('take_photo')
+time.sleep(1)
+click_centre_of_named_image('reduce_window_size')
+time.sleep(1)
+click_centre_of_named_image('quit_x')
 
 
 
