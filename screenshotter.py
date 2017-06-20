@@ -3,6 +3,7 @@
 # change over time. Particularly the kids rooms in the evenings around bed time.
 
 from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 import os
 import pyautogui
 import time
@@ -51,8 +52,14 @@ def get_cameras_pw():
     return pw
 
 
-def type_username(un):
+def type_username_PAG(un):
     pyautogui.typewrite(un)
+
+
+def type_username(un):
+    elem = driver.find_element_by_id("username")
+    elem.send_keys(un)
+    elem.send_keys(Keys.TAB)
 
 
 def click_centre_of_named_image(img_name):
@@ -64,8 +71,19 @@ def click_centre_of_named_image(img_name):
         print('{} button not found'.format(img_name))
 
 
-def type_pw(pwd):
+def click_camera_button():
+    driver.find_element_by_xpath("//div[contains(text(),'ch-btn play')]").click()
+
+
+
+def type_pw_PAG(pwd):
     pyautogui.typewrite(pwd)
+
+
+def type_pw(pwd):
+    elem = driver.find_element_by_id("password")
+    elem.send_keys(pwd)
+    elem.send_keys(Keys.ENTER)
 
 
 machine = which_pc()
@@ -76,39 +94,13 @@ cameras_pw = get_cameras_pw()
 photos_dir = r'H:\Photos\ipcam'
 
 
-# Open web browser (selenium)
 ie_path = get_ie_path()
-time.sleep(1)
 driver = webdriver.Ie(ie_path)
 driver.get(cameras_url)  # load cameras page - take URL from config file
-time.sleep(1)
-# click_centre_of_named_image('logo')  # use for testing
-time.sleep(1)   # required to give pyautogui time to view the page
-# click_centre_of_named_image('allow')
-time.sleep(1)
-# enter_u_p()
-# click_centre_of_named_image('username')    # Not required as automatically selects this field
 
 type_username(cameras_username)
-time.sleep(1)
-pyautogui.press('enter')
-# click_centre_of_named_image('password')   # using tab instead as image recognition was inconsistent
-time.sleep(1)
 type_pw(cameras_pw)
-pyautogui.press('enter')
-time.sleep(1)
-click_centre_of_named_image('izzy')
-time.sleep(1)
-click_centre_of_named_image('maximise')
-time.sleep(1)
-click_centre_of_named_image('take_photo')
-time.sleep(1)
-click_centre_of_named_image('reduce_window_size')
-time.sleep(1)
-click_centre_of_named_image('quit_x')
-
-
-### This all runs fine from PyCharm and batch file, but through scheduler doesn't find Izzy. So annoying.
+click_camera_button()
 
 
 
