@@ -51,20 +51,17 @@ def get_cameras_pw():
     return pw
 
 
-
 def type_username(un):
     pyautogui.typewrite(un)
 
 
 def click_centre_of_named_image(img_name):
     try:
-        location = pyautogui.locateOnScreen(r'click_images\{}.png'.format(img_name))  #
+        location = pyautogui.locateOnScreen(r'click_images\{}.png'.format(img_name), grayscale=True)
         centre = pyautogui.center(location)
         pyautogui.click(centre)
     except:
         print('{} button not found'.format(img_name))
-
-
 
 
 def type_pw(pwd):
