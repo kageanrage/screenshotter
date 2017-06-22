@@ -5,7 +5,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import os
-import pyautogui
 import time
 
 
@@ -52,32 +51,15 @@ def get_cameras_pw():
     return pw
 
 
-def type_username_PAG(un):
-    pyautogui.typewrite(un)
-
-
 def type_username(un):
     elem = driver.find_element_by_id("username")
     elem.send_keys(un)
     elem.send_keys(Keys.TAB)
 
 
-def click_centre_of_named_image(img_name):
-    try:
-        location = pyautogui.locateOnScreen(r'click_images\{}.png'.format(img_name), grayscale=True)
-        centre = pyautogui.center(location)
-        pyautogui.click(centre)
-    except:
-        print('{} button not found'.format(img_name))
-
-
-def click_camera_button():
-    driver.find_element_by_xpath("//div[contains(text(),'ch-btn play')]").click()
-
-
-
-def type_pw_PAG(pwd):
-    pyautogui.typewrite(pwd)
+def click_based_on_css_selector(css_sel):
+    button_element = driver.find_element_by_css_selector(css_sel)
+    button_element.click()
 
 
 def type_pw(pwd):
@@ -99,18 +81,13 @@ driver = webdriver.Ie(ie_path)
 driver.get(cameras_url)  # load cameras page - take URL from config file
 
 type_username(cameras_username)
+driver.implicitly_wait(3)
 type_pw(cameras_pw)
-click_camera_button()
+click_based_on_css_selector("div.ch:nth-child(1) > div:nth-child(1) > div:nth-child(1)")  # select cam 1
+driver.implicitly_wait(3)
+click_based_on_css_selector("span.ng-scope:nth-child(1) > button:nth-child(2)")  # click photo button
+driver.quit()
 
 
-
-# grab u/p from config file
-# log in to web browser (firefox or IE?)
-# go to first camera of interest
-# use built-in photo-capture button, or maximise and screenshot
-# rename image
-# move image
 # Do the same for the other cameras of interest
 # email me if any failures occur
-# create BAT file (in Windows) and schedule with Task Scheduler
-
