@@ -68,6 +68,13 @@ def type_pw(pwd):
     elem.send_keys(Keys.ENTER)
 
 
+# CSS selectors
+izzy_cam_css = "div.ch:nth-child(1) > div:nth-child(1) > div:nth-child(1)"
+photo_button_css = "span.ng-scope:nth-child(1) > button:nth-child(2)"
+nate_cam_css = ""
+backyard_cam_css = ""
+
+
 machine = which_pc()
 config_file = get_config_file()
 cameras_url = get_cameras_url()
@@ -83,9 +90,9 @@ driver.get(cameras_url)  # load cameras page - take URL from config file
 type_username(cameras_username)
 driver.implicitly_wait(3)
 type_pw(cameras_pw)
-click_based_on_css_selector("div.ch:nth-child(1) > div:nth-child(1) > div:nth-child(1)")  # select cam 1
+click_based_on_css_selector(izzy_cam_css)  # select cam 1
 driver.implicitly_wait(3)
-click_based_on_css_selector("span.ng-scope:nth-child(1) > button:nth-child(2)")  # click photo button
+click_based_on_css_selector(photo_button_css)  # click photo button
 driver.quit()
 
 
