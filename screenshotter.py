@@ -6,6 +6,10 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import os
 import time
+from config import Config
+
+
+cfg = Config()
 
 
 def which_pc():
@@ -20,35 +24,6 @@ def get_ie_path():
         return r'C:\Github local repos\selenium IE driver\IEDriverServer.exe'
     else:
         return r'C:\selenium\IEDriverServer.exe'
-
-
-def get_config_file():
-    if machine == 'desktop':
-        config = r"C:\Github local repos\dont_share\config.txt"
-    else:
-        config = r"C:\KP Python\dont_share\config.txt"
-    return config
-
-
-def get_cameras_url():
-    f = open(config_file, 'r')  # import config info
-    f_str = str((f.read()))  # import config info
-    url = f_str[174:214]
-    return url
-
-
-def get_cameras_uname():
-    f = open(config_file, 'r')  # import config info
-    f_str = str((f.read()))  # import config info
-    uname = f_str[237:244]
-    return uname
-
-
-def get_cameras_pw():
-    f = open(config_file, 'r')  # import config info
-    f_str = str((f.read()))  # import config info
-    pw = f_str[267:281]
-    return pw
 
 
 def type_username(un):
@@ -75,21 +50,16 @@ nate_cam_css = ""
 backyard_cam_css = ""
 
 
-machine = which_pc()
-config_file = get_config_file()
-cameras_url = get_cameras_url()
-cameras_username = get_cameras_uname()
-cameras_pw = get_cameras_pw()
-photos_dir = r'H:\Photos\ipcam'
 
+machine = which_pc()
 
 ie_path = get_ie_path()
 driver = webdriver.Ie(ie_path)
-driver.get(cameras_url)  # load cameras page - take URL from config file
+driver.get(cfg.cameras_url)  # load cameras page - take URL from config file
 
-type_username(cameras_username)
+type_username(cfg.cameras_uname)
 driver.implicitly_wait(3)
-type_pw(cameras_pw)
+type_pw(cfg.cameras_pw)
 click_based_on_css_selector(izzy_cam_css)  # select cam 1
 driver.implicitly_wait(3)
 click_based_on_css_selector(photo_button_css)  # click photo button
