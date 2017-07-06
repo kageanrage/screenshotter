@@ -9,10 +9,6 @@ __pycache__/
 .cache
 .idea/
 config.py
-example HTML/
-example HTML 19 Dec/
-admin.xlsx
-plan/
 
 # User-specific stuff:
 .idea/**/workspace.xml
