@@ -7,9 +7,18 @@ from selenium.webdriver.common.keys import Keys
 import os
 import time
 from config import Config
+import sys
 
 
 cfg = Config()
+
+
+def which_cameras():    # reads in arg string from batch file
+    if len(sys.argv) > 1:
+        cams_str = str(sys.argv[1])  # takes the desired cameras string from the command line arg, passed by the batch file
+    else:
+        cams_str = "No arguments passed"
+    return cams_str
 
 
 def which_pc():
@@ -51,7 +60,9 @@ backyard_cam_css = "#channel > div > div.channel-list > div:nth-child(3) > div:n
 alfresco_cam_css = "#channel > div > div.channel-list > div:nth-child(4) > div:nth-child(1) > div"
 driveway_cam_css = "#channel > div > div.channel-list > div:nth-child(5) > div:nth-child(1) > div"
 
+
 machine = which_pc()
+cams = which_cameras()  # reads in arg string from batch file
 
 ie_path = get_ie_path()
 driver = webdriver.Ie(ie_path)
@@ -60,22 +71,25 @@ driver.get(cfg.cameras_url)  # load cameras page - take URL from config file
 type_username(cfg.cameras_uname)
 driver.implicitly_wait(3)
 type_pw(cfg.cameras_pw)
-click_based_on_css_selector(izzy_cam_css)  # select cam 1
-driver.implicitly_wait(3)
-time.sleep(1)
-click_based_on_css_selector(photo_button_css)  # click photo button
 
-click_based_on_css_selector(nate_cam_css)  # select cam 1
-driver.implicitly_wait(3)
-time.sleep(2)
-click_based_on_css_selector(photo_button_css)  # click photo button
+if 'Izzy' in cams:  # if the string 'Izzy' appears in the argument...
+    click_based_on_css_selector(izzy_cam_css)  # select cam 1
+    driver.implicitly_wait(3)
+    time.sleep(1)
+    click_based_on_css_selector(photo_button_css)  # click photo button
 
-click_based_on_css_selector(backyard_cam_css)  # select cam 1
-driver.implicitly_wait(3)
-time.sleep(3)
-click_based_on_css_selector(photo_button_css)  # click photo button
+if 'Nate' in cams:  # if the string 'Nate' appears in the argument...
+    click_based_on_css_selector(nate_cam_css)  # select cam 1
+    driver.implicitly_wait(3)
+    time.sleep(2)
+    click_based_on_css_selector(photo_button_css)  # click photo button
 
-#driver.quit()
+if 'Backyard' in cams:  # if the string 'Backyard' appears in the argument...
+    click_based_on_css_selector(backyard_cam_css)  # select cam 1
+    driver.implicitly_wait(3)
+    time.sleep(3)
+    click_based_on_css_selector(photo_button_css)  # click photo button
+
 
 # To Do:
 # will need to schedule backyard snaps for daytime, so need to be able to pass argument to script which determines
