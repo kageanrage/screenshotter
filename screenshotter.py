@@ -90,6 +90,7 @@ if 'Backyard' in cams:  # if the string 'Backyard' appears in the argument...
     time.sleep(3)
     click_based_on_css_selector(photo_button_css)  # click photo button
 
+driver.quit()
 
 # To Do:
 # will need to schedule backyard snaps for daytime, so need to be able to pass argument to script which determines
