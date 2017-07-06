@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="213c974c-a307-4fbc-b9ff-2769295a46df" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/screenshotter.py" afterPath="$PROJECT_DIR$/screenshotter.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -314,7 +313,8 @@
     <MESSAGE value="merged" />
     <MESSAGE value="edited comments" />
     <MESSAGE value="added comments on need for arg passing, also css selectors for other cameras" />
-    <option name="LAST_COMMIT_MESSAGE" value="added comments on need for arg passing, also css selectors for other cameras" />
+    <MESSAGE value="built in and tested arg passing feature" />
+    <option name="LAST_COMMIT_MESSAGE" value="built in and tested arg passing feature" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
