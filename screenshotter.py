@@ -46,9 +46,10 @@ def type_pw(pwd):
 # CSS selectors
 izzy_cam_css = "div.ch:nth-child(1) > div:nth-child(1) > div:nth-child(1)"
 photo_button_css = "span.ng-scope:nth-child(1) > button:nth-child(2)"
-nate_cam_css = ""
-backyard_cam_css = ""
-
+nate_cam_css = "#channel > div > div.channel-list > div:nth-child(2) > div:nth-child(1) > div"
+backyard_cam_css = "#channel > div > div.channel-list > div:nth-child(3) > div:nth-child(1) > div"
+alfresco_cam_css = "#channel > div > div.channel-list > div:nth-child(4) > div:nth-child(1) > div"
+driveway_cam_css = "#channel > div > div.channel-list > div:nth-child(5) > div:nth-child(1) > div"
 
 machine = which_pc()
 
@@ -61,8 +62,22 @@ driver.implicitly_wait(3)
 type_pw(cfg.cameras_pw)
 click_based_on_css_selector(izzy_cam_css)  # select cam 1
 driver.implicitly_wait(3)
+time.sleep(1)
 click_based_on_css_selector(photo_button_css)  # click photo button
-driver.quit()
+
+click_based_on_css_selector(nate_cam_css)  # select cam 1
+driver.implicitly_wait(3)
+time.sleep(2)
+click_based_on_css_selector(photo_button_css)  # click photo button
+
+click_based_on_css_selector(backyard_cam_css)  # select cam 1
+driver.implicitly_wait(3)
+time.sleep(3)
+click_based_on_css_selector(photo_button_css)  # click photo button
+
+#driver.quit()
 
 # To Do:
-# Do the same for the other cameras of interest
+# will need to schedule backyard snaps for daytime, so need to be able to pass argument to script which determines
+# which cameras to snapshot. Pass from BAT file, then use scheduling to trigger the right batch file at the right time
+#  of day/night
