@@ -50,7 +50,6 @@ nate_cam_css = ""
 backyard_cam_css = ""
 
 
-
 machine = which_pc()
 
 ie_path = get_ie_path()
@@ -65,6 +64,5 @@ driver.implicitly_wait(3)
 click_based_on_css_selector(photo_button_css)  # click photo button
 driver.quit()
 
-
+# To Do:
 # Do the same for the other cameras of interest
-# email me if any failures occur
