@@ -37,6 +37,7 @@ def get_ie_path():
 
 def type_username(un):
     elem = driver.find_element_by_id("username")
+    # elem = driver.find_element_by_css_selector("username_css")
     elem.send_keys(un)
     elem.send_keys(Keys.TAB)
 
@@ -59,6 +60,7 @@ nate_cam_css = "#channel > div > div.channel-list > div:nth-child(2) > div:nth-c
 backyard_cam_css = "#channel > div > div.channel-list > div:nth-child(2) > div:nth-child(1) > div"
 alfresco_cam_css = "#channel > div > div.channel-list > div:nth-child(4) > div:nth-child(1) > div"
 driveway_cam_css = "#channel > div > div.channel-list > div:nth-child(3) > div:nth-child(1) > div"
+username_css = "#username"
 
 
 machine = which_pc()
@@ -67,7 +69,7 @@ cams = which_cameras()  # reads in arg string from batch file
 ie_path = get_ie_path()
 driver = webdriver.Ie(ie_path)
 driver.get(cfg.cameras_url)  # load cameras page - take URL from config file
-
+time.sleep(5)
 type_username(cfg.cameras_uname)
 driver.implicitly_wait(3)
 type_pw(cfg.cameras_pw)
