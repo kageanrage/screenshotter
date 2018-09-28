@@ -1,0 +1,1 @@
+@"C:\Program Files\Python37\python.exe" "C:\Github local repos\screenshotter\screenshotter.py" "Izzy" %*

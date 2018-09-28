@@ -53,12 +53,12 @@ def type_pw(pwd):
 
 
 # CSS selectors
-izzy_cam_css = "div.ch:nth-child(1) > div:nth-child(1) > div:nth-child(1)"
-photo_button_css = "span.ng-scope:nth-child(1) > button:nth-child(2)"
+izzy_cam_css = "#channel > div > div.channel-list > div:nth-child(1) > div:nth-child(1) > div"
+photo_button_css = "#tool > div > div.tool-r > span > button:nth-child(2) > i"
 nate_cam_css = "#channel > div > div.channel-list > div:nth-child(2) > div:nth-child(1) > div"
-backyard_cam_css = "#channel > div > div.channel-list > div:nth-child(3) > div:nth-child(1) > div"
+backyard_cam_css = "#channel > div > div.channel-list > div:nth-child(2) > div:nth-child(1) > div"
 alfresco_cam_css = "#channel > div > div.channel-list > div:nth-child(4) > div:nth-child(1) > div"
-driveway_cam_css = "#channel > div > div.channel-list > div:nth-child(5) > div:nth-child(1) > div"
+driveway_cam_css = "#channel > div > div.channel-list > div:nth-child(3) > div:nth-child(1) > div"
 
 
 machine = which_pc()
@@ -87,7 +87,7 @@ if 'Nate' in cams:  # if the string 'Nate' appears in the argument...
 if 'Backyard' in cams:  # if the string 'Backyard' appears in the argument...
     click_based_on_css_selector(backyard_cam_css)  # select cam 1
     driver.implicitly_wait(3)
-    time.sleep(3)
+    time.sleep(5)
     click_based_on_css_selector(photo_button_css)  # click photo button
 
 driver.quit()
