@@ -1,6 +1,6 @@
 # script to log in to web interface of cameras in home network and take screenshots at regular intervals, then store
 # these in a folder. Aim is to build up a database of photos capturing what parts of our home look like and how they
-# change over time. Particularly the kids rooms in the evenings around bed time.
+# change over time. Particularly the kids rooms in the evenings around bed time
 
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
